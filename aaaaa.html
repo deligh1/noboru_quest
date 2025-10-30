@@ -96,6 +96,8 @@
     const btn1 = document.getElementById("1");
     const btn2 = document.getElementById("2");
     const btn3 = document.getElementById("3");
+    const ad = document.getElementsByTagName("img")[0];
+    let adad = false;
     let page = 0;
     function render(){
         text.innerText = story[page][0];
@@ -127,6 +129,15 @@
         }else{
             render();
         }
+    };
+    ad.onclick = function(){
+        adad = !adad;
+        if(adad){
+            ad.style.bottom = "0";
+        }else{
+            ad.style.bottom = "-10%";
+        }
+
     };
 </script>
 </html>
