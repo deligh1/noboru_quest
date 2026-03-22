@@ -99,16 +99,35 @@
     const ad = document.getElementsByTagName("img")[0];
     let adad = false;
     let page = 0;
+    let res = 0
+    const gameover = [9]
+    const clear = [8,25,129,143,150,164,218,236,251,346]
+    const nobo = [5]
     function render(){
         text.innerText = story[page][0];
         btn1.innerText = story[page][1][0];
         btn2.innerText = story[page][2][0];
         btn3.innerText = story[page][3][0];
+        if (gameover.indexOf(page) != -1) {
+            res = -1
+        }
+        if (clear.indexOf(page) != -1) {
+            res = clear.indexOf(page)
+        }
+        if (nobo.indexOf(page) != -1) {
+            res = -2
+        }
+    }
+    function save(){
+        result = JSON.parse(localStorage.getItem("results"));
+        result[page+2]++;
+        localStorage.setItem("results",JSON.stringify(result));
     }
     render();
     btn1.onclick = function(){
         page = story[page][1][1];
         if(page == -1){
+            save()
             location.href = 'index.html';
         }else{
             render();
@@ -117,6 +136,7 @@
     btn2.onclick = function(){
         page = story[page][2][1];
         if(page == -1){
+            save()
             location.href = 'index.html';
         }else{
             render();
@@ -125,6 +145,7 @@
     btn3.onclick = function(){
         page = story[page][3][1];
         if(page == -1){
+            save()
             location.href = 'index.html';
         }else{
             render();

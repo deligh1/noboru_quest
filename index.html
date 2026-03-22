@@ -35,8 +35,21 @@
     <p style="font-size: 32px;">のぼるとは</p>
     <p style="font-size: 20px;">コンピュータ同好会のマスコットキャラクター。もみあげまでつながったおひげと、まんまるのおなかがチャームポイント。留年を二回しているから、二十歳でも制服。</p>
     <img style="width: 800px; max-width: 100%; height: auto;" src="Image.jpg" alt="のぼるの写真">
+    <ul id="result">
+    </ul>
 </body>
 <script>
+    const clear_pattern = 10
+    const init_array = new Array(clear_pattern + 3).fill(0)
+    if (localStorage.getItem("results") == null)localStorage.setItem("results", JSON.stringify(init_array))
+    result = JSON.parse(localStorage.getItem("results") || "{}");
+    const result_list = document.getElementById("result")
+    for(let i=0;i<clear_pattern;i++){
+        const li = document.createElement('li');
+        li.innerHTML = (i-2) + " : " + result[i];
+        list.appendChild(li);
+    }
+
     document.getElementById('start').onclick = function() {
         location.href = 'aaaaa.html';
     };
