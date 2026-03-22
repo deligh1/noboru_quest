@@ -43,10 +43,13 @@
     const init_array = new Array(clear_pattern + 3).fill(0)
     if (localStorage.getItem("results") == null)localStorage.setItem("results", JSON.stringify(init_array))
     result = JSON.parse(localStorage.getItem("results") || "{}");
+    if (result.length < clear_pattern+3){
+        result.push(...(new Array(clear_pattern+3 - result.length).fill(0)))
+    }
     const result_list = document.getElementById("result")
     for(let i=0;i<clear_pattern;i++){
         const li = document.createElement('li');
-        li.innerHTML = (i-2) + " : " + result[i];
+        li.innerHTML = (i-3) + " : " + result[i];
         result_list.appendChild(li);
     }
 

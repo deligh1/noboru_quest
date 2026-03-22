@@ -109,18 +109,18 @@
         btn2.innerText = story[page][2][0];
         btn3.innerText = story[page][3][0];
         if (gameover.indexOf(page) != -1) {
-            res = -1
+            res = -1;
         }
         if (clear.indexOf(page) != -1) {
-            res = clear.indexOf(page)
+            res = clear.indexOf(page) + 1;
         }
         if (nobo.indexOf(page) != -1) {
-            res = -2
+            res = -2;
         }
     }
     function save(){
         result = JSON.parse(localStorage.getItem("results"));
-        result[page+2]++;
+        result[res+3]++;
         localStorage.setItem("results",JSON.stringify(result));
     }
     render();
