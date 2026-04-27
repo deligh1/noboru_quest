@@ -44,7 +44,7 @@
     const stories = 28;
     let visited_txt = localStorage.getItem("stories");
     if (typeof visited_txt != Array) visited_txt = "[]";
-    let visited = JSON.parse(localStorage.getItem("stories"));
+    let visited = JSON.parse(visited_txt);
     if (visited == null) visited = new Array(stories).fill(0);
     if (visited.length < stories) visited.push(...(new Array(clear_pattern+3 - result.length).fill(0)));
     localStorage.setItem("stories", visited);
