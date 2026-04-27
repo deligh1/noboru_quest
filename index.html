@@ -40,6 +40,7 @@
 </body>
 <script>
     const clear_pattern = 10
+    const end_comments = ["いわもとのぼのぼのぼたんたん","ゲームオーバー","通常終了","クリア0","クリア1","クリア2","クリア3","クリア4","クリア5","クリア6","クリア7","クリア8","クリア9","クリア10"]
     const init_array = new Array(clear_pattern + 3).fill(0)
     if (localStorage.getItem("results") == null)localStorage.setItem("results", JSON.stringify(init_array))
     result = JSON.parse(localStorage.getItem("results") || "{}");
@@ -49,7 +50,7 @@
     const result_list = document.getElementById("result")
     for(let i=0;i<clear_pattern;i++){
         const li = document.createElement('li');
-        li.innerHTML = (i-3) + " : " + result[i];
+        li.innerHTML = end_comments[i] + " : " + result[i];
         result_list.appendChild(li);
     }
 
