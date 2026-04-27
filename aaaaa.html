@@ -121,6 +121,7 @@
         }
     }
     function save(){
+        localStorage.setItem("stories", JSON.stringify(visited));
         result = JSON.parse(localStorage.getItem("results"));
         result[res+2]++;
         localStorage.setItem("results",JSON.stringify(result));
