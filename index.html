@@ -35,20 +35,35 @@
     <p style="font-size: 32px;">のぼるとは</p>
     <p style="font-size: 20px;">コンピュータ同好会のマスコットキャラクター。もみあげまでつながったおひげと、まんまるのおなかがチャームポイント。留年を二回しているから、二十歳でも制服。</p>
     <img style="width: 800px; max-width: 100%; height: auto;" src="Image.jpg" alt="のぼるの写真">
+    <p style="font-size: 20px;">results</p>
+    <p id="stories"></p>
     <ul id="result">
     </ul>
 </body>
 <script>
-    const clear_pattern = 10
-    const end_comments = ["いわもとのぼのぼのぼたんたん","ゲームオーバー","通常終了","クリア0","クリア1","クリア2","クリア3","クリア4","クリア5","クリア6","クリア7","クリア8","クリア9","クリア10"]
+    const stories = 28;
+    const visited = localStorage.getItem("stories");
+    if (visited == null) visited = new Array(stories).fill(0);
+    if (visited.length < stories) visited.push(...(new Array(clear_pattern+3 - result.length).fill(0)));
+    localStorage.setItem("stories", visited);
+    let cnt = 0;
+    visited.forEach(element => {
+        if (element != 0)cnt++;
+    });
+    const stories_p = document.getElementById("stories");
+    stories_p.innerText = "到達数　" + cnt + " / " + stories;
+
+    const clear_pattern = 2;
+    const end_comments = ["いわもとのぼのぼのぼたんたん","ゲームオーバー","通常終了","クリア0","クリア1","クリア2","クリア3","クリア4","クリア5","クリア6","クリア7","クリア8","クリア9","クリア10"];
     const init_array = new Array(clear_pattern + 3).fill(0)
     if (localStorage.getItem("results") == null)localStorage.setItem("results", JSON.stringify(init_array))
-    result = JSON.parse(localStorage.getItem("results") || "{}");
+    const result = JSON.parse(localStorage.getItem("results") || "[]");
     if (result.length < clear_pattern+3){
-        result.push(...(new Array(clear_pattern+3 - result.length).fill(0)))
+        result.push(...(new Array(clear_pattern+3 - result.length).fill(0)));
+        localStorage.setItem("results", JSON.stringify(result));
     }
     const result_list = document.getElementById("result")
-    for(let i=0;i<clear_pattern;i++){
+    for(let i=0;i<clear_pattern+3;i++){
         const li = document.createElement('li');
         li.innerHTML = end_comments[i] + " : " + result[i];
         result_list.appendChild(li);

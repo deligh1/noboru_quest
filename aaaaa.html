@@ -99,11 +99,13 @@
     const ad = document.getElementsByTagName("img")[0];
     let adad = false;
     let page = 0;
+    let visited = localStorage.getItem("stories");
     let res = 0
     const gameover = [9]
     const clear = [8,25,129,143,150,164,218,236,251,346]
     const nobo = [5]
     function render(){
+        visited[page]++;
         text.innerText = story[page][0];
         btn1.innerText = story[page][1][0];
         btn2.innerText = story[page][2][0];
