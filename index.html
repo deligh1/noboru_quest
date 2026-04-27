@@ -42,7 +42,7 @@
 </body>
 <script>
     const stories = 28;
-    let visited = localStorage.getItem("stories");
+    let visited = JSON.parse(localStorage.getItem("stories"));
     if (visited == null) visited = new Array(stories).fill(0);
     if (visited.length < stories) visited.push(...(new Array(clear_pattern+3 - result.length).fill(0)));
     localStorage.setItem("stories", visited);
