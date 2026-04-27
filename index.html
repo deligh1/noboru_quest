@@ -47,7 +47,7 @@
     let visited = JSON.parse(visited_txt);
     if (visited == null) visited = new Array(stories).fill(0);
     if (visited.length < stories) visited.push(...(new Array(stories - visited.length).fill(0)));
-    localStorage.setItem("stories", visited);
+    localStorage.setItem("stories", JSON.stringify(visited));
     let cnt = 0;
     visited.forEach(element => {
         if (element != 0)cnt++;
